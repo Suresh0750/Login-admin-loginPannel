@@ -1,0 +1,52 @@
+
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="../css/userLogin.css">
+
+</head>
+
+<body>
+  <main id="main-holder">
+    <h1 id="login-header">Login</h1>
+    <%if(isNotCorrect){%>
+      <div id="login-error-msg-holder">
+        <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
+      </div>
+    <%}%>
+    
+    <form id="login-form" action="/home" method="post">
+      <input type="email" name="userEmail" id="useremail-field" class="login-form-field" placeholder="useremail" required="true">
+      <input type="password" name="userPass" id="password-field" class="login-form-field" placeholder="**********" required="true">
+      <input type="submit" value="Login" id="login-form-submit">
+    </form>
+    <p>Not a member?<span><a id="link" href="/signUp">Signup now</a></span></p>
+  </main>
+  <script src="../jquery-validation/jquery.js"></script>
+  <script src="../jquery-validation/jquery.validate.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      $.validator.setDefaults({
+        // submitHandlers:function(){
+          
+        // }
+      }),
+      $("login-form").validate({
+       rules:{
+        userEmail:"required",
+        userPass:"required"
+       },
+       message:{
+        userEmail:"Please Enter The Email",
+        userPass:"Please Enter The Password"
+       }
+      })
+    })
+  </script>
+
+</body>
+
+</html>

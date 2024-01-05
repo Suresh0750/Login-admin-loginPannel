@@ -1,0 +1,148 @@
+<html>
+<head>
+
+    <link rel="stylesheet" href="../css/signUp.css">
+</head>
+
+<body class="main-bg">
+  <div class="login-container text-c animated flipInX">
+          <div>
+              <h1 class="logo-badge text-whitesmoke"><span class="fa fa-user-circle"></span></h1>
+          </div>
+              <h3 class="text-whitesmoke">Welcome to </h3>
+              <p class="text-whitesmoke">Sign up</p>
+          <div class="container-content">
+              <form class="margin-t" id="form" action="/loginPage" method="POST">
+                <%if(invalid==true){%>
+                <h2 id="exitEmail">Email already exist</h2>
+                <%}else{%>
+                    <%}%>
+                  <div class="form-group">
+                      <div id="dummeName"></div>
+                      <input type="text" class="form-control" id="userName" placeholder="Enter Name" name="userName" required="true" >
+                  </div>
+                  <div class="form-group">
+                    <input type="tel" class="form-control" id="userNumber" placeholder="Enter-Number" maxlength="10" minlength="10" name="userNumber" required="">
+                  </div>
+                  
+                  <div class="form-group">
+                    <input type="email" class="form-control" id="userEmail" placeholder="Enter-Email" name="userEmail" required="true">
+                  </div>
+                  <div class="form-group">
+                      <div id="dummePass"></div>
+                      <input type="password" class="form-control" id="userPass" name="userPass" placeholder="*****" required="true">
+                  </div>
+
+                  <p id="phone"></p>
+                  <%if(empty==true){%>
+
+                  <error id="alert" style="color:red">"* whitespace are not allowed input field"</error><br><br>
+                  <%}else if(isNan==true){%>
+                    <error id="alert" style="color:red">"* Is Not Number"</error><br><br>
+                    <%}%>
+                  <button type="submit" id="submit"  class="form-button button-l margin-b">Sign up</button>
+  
+                  <a class="text-darkyellow" href="#"><small>Forgot your password?</small></a>
+                  <p class="text-whitesmoke text-center"><small>Do not have an account?</small></p>
+                  <a class="text-darkyellow" href="#"><small>Sign Up</small></a>
+              </form>
+              <p class="margin-t text-whitesmoke"><small> Your Name &copy; 2018</small> </p>
+          </div>
+      </div>
+     <script src="../jquery-validation/jquery.js"></script>
+     <script src="../jquery-validation/jquery.validate.js"></script>
+     <!-- <script>
+
+      // getElementById
+      var userName = document.getElementById("userName")
+      var userPass = document.getElementById("userNumber")
+      var password = document.getElementById("userPass")
+      var alert = document.getElementById("alert")
+
+      //addEventtListener
+      userName.addEventListener("keyup",whiteSpace)
+      userPass.addEventListener("keyup",whiteSpace)
+      password.addEventListener("keyup",whiteSpace)
+
+      //sapce avoid regex
+
+      var patten = /\s/g
+
+      function whiteSpace(){
+        var nameValue = userName.value;
+        var passValue = userPass.value;
+        var password = password.value;
+
+
+        if(nameValue.match(patten) || passValue.match(patten) || password.match(patten))
+        {
+          alert.innerHTML = "* whitespace are not allowed input field"
+          return false
+        }
+
+        alert.innerHTML = ""
+        return true;
+
+      }
+
+      function validateForm(){
+
+        if(!whiteSpace())
+        {
+          alert.innerHTML= "* please fill all details"
+          return false;
+        }
+      }
+     </script> -->
+     <script>
+        // document validation in jquary 
+        $(document).ready(function(){
+          $("#submit").clcik(function(){
+            var inputvalue = $("#userNumber").val()
+
+            if(inputvalue.length==10)
+            {
+              if(isNaN(inputvalue))
+              {
+                $("#phone").html("Not a number")
+
+              }else{
+                $("#phone").html("correct")
+              }
+            }else{
+
+              $("#phone").html("Not of length 10")
+            }
+          })
+          $.validator.setDefaults({
+           
+          });
+          $("form").validate({
+            rules:{
+                userName:"required",
+                userNumber:{
+                  matches:"[0-9]+",
+                  required:true,
+                  minlength:10,
+                  maxlength:10
+                },
+                userEmail:{
+                    required:true,
+                    email:true
+                },
+                userPass:"required"
+            },
+            message:{
+                userName:"Please Enter The Name",
+                userNumber:"Please Enter The Phone-Number",
+                userEmail:"Please Enter The Email",
+                userPass:"Please Enter The Pass"
+            }
+
+          });
+       
+        })
+     </script>
+</body>
+    
+</html>

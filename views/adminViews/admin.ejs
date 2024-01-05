@@ -1,0 +1,34 @@
+
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Admin Page</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../admincss/admin.css'>
+    <style>
+      #notValid{
+        color:red;
+      }
+    </style>
+</head>
+<body>
+    <form class="login-form" action="/adminHome" method="POST">
+        <p class="login-text">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-lock fa-stack-1x"></i>
+          </span>
+        </p>
+        <%if(invalidId==true){%>
+          <p id="notValid">Id or password is not valied</p>
+        <%}%>
+        <input type="email" class="login-username" autofocus="true"  name="adminEmail" required="true" placeholder="Email" />
+        <input type="password" class="login-password" required="true" name="adminPass" required="true"  placeholder="Password" />
+        <input type="submit" name="Login" value="Login" class="login-submit" />
+      </form>
+      <a href="#" class="login-forgot-pass">forgot password?</a>
+      <div class="underlay-photo"></div>
+      <div class="underlay-black"></div> 
+</body>
+</html>

@@ -1,0 +1,44 @@
+<html>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+
+  <body>
+      <h1 class="h1">Hello Developers</h1>
+      <form action="/logout" method="POST">
+        <button type="submit" class="btn btn-warning">Log out</button>
+      </form>
+      <div class="container d-flex flex-wrap" style="display:flex;">
+
+       
+          <% if(cards.length>0){%>
+
+            <% cards.forEach((cards)=>{%>
+
+            
+              <div class="container m-1">
+                <h1 class="text-seccess"><%=cards.header%></h1>
+                <div class="card" style="width: 18rem;">
+                  <img src="<%=cards.image%>" class="card-img-top" alt="img" style="width: 250px; height: 200px;">
+                  <div class="card-body">
+                    <h2 class="card-title text-center"><%=cards.title%></h2>
+                    <p class="card-text text-center"><%=cards.desc%><p>
+                  </div>
+                </div>
+              </div>
+        
+              <%})%>
+          <%}else{%>
+          <p>No cards available.</p>
+          <%}%>
+       </div>
+
+  </body>
+</html>
+
+
+
+</html> 
+
+

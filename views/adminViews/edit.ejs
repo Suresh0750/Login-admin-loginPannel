@@ -1,0 +1,91 @@
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Admin Edit</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../admincss/semantic.min.css'>
+    <link rel="stylesheet" type="text/css" media="screen" href="../admincss/adminHome.css">
+    <style>
+        #repeatEmail{
+            color:red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class ="ui massive menu">
+            <div class="ui container">
+
+                <div class="header item">
+                    <a href="/" class="link">Home</a>
+                </div>
+                <a class="item">
+                    About Us
+                </a>
+                <a class="item">
+                    contact
+                </a>
+            </div>
+         
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="ui container">
+            <%if(invaliedEmail==true){%>
+                <h2 id="repeatEmail">Email Id Already Exit</h2>
+            <%}%>
+            <form action="/update<%=data._id%>" id="form" class="ui form" method="POST">
+                <div class="ui three fields">
+                    <div class="field">
+                        <label for="uName" class="ui label green" autofocus="true"  > Enter name</label>
+                        <input type="text" id="uName" name="userName" value="<%=data.userName%>" required="">
+                    </div>
+                    <div class="field">
+                        <label for="uNumber" class="ui label green" autofocus="true" > Enter phone number</label>
+                        <input type="tel"  id="uNumber" name="userNumber" minlength="10"  maxlength="10" value="<%=data.userNumber%>" required="">
+                    </div>
+                    <div class="field">
+                        <label for="uEmail" class="ui label green" autofocus="true"> Enter email id</label>
+                        <input type="email" id="uEmail" name="userEmail" value="<%=data.userEmail%>" required="">
+                    </div>
+                    
+                   
+                </div>
+                <div class="ui fluid field">
+                    <input type="submit" value="Submit" class="ui button inverted green fluid">
+                </div>
+            </form>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+
+    <script src="../js/semantic.min.js"></script>
+    <script>
+        // jquery validation
+        $(document).ready(function(){
+            $("form").validate({
+                rules:{
+                    userName:"required",
+                    userNumber:{
+                        matches:"[0-9]",
+                        minlength:10,
+                        maxlength:10
+                    },
+                    userPass:"required"
+                },
+                message:{
+                    userName:"This Field is required",
+                    userNumber:"This Field is required",
+                    userPass:"This Field is required"
+                }
+            })
+        })
+    </script>
+</body>
+</html>

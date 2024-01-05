@@ -1,0 +1,133 @@
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Admin Home</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../admincss/semantic.min.css'>
+    <link rel="stylesheet" type="text/css" media="screen" href="../admincss/adminHome.css">
+  
+</head>
+<body>
+    <div class="wrapper">
+        <div class ="ui massive menu">
+            <div class="ui container">
+
+                <div class="header item">
+                    <a href="/" class="link">Home</a>
+                </div>
+                <a class="item">
+                    About Us
+                </a>
+                <a class="item">
+                    contact
+                </a>
+                
+            </div>
+           
+                <form id="form" action="/searchUser" method="POST">
+                    <input type="search" id="search" name='search'>
+                    <input type="submit" value="search" id="submit">
+                </form>
+           
+            <div>
+                <form action="/adminLogOut" method="POST" id="logout" >
+                    <input type="submit" class="ui button inverted green fluid" value="Logout">
+                </form>
+            </div>
+            <!-- <div>
+                <form action="/addUser" method="POST" id="addUser" >
+                    <input type="submit" class="ui button inverted green fluid" value="Add User">
+                </form>
+            </div> -->
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="ui container">
+            <%if(addData==true){%>
+                <h2 id="error">User Already Exsit </h2> 
+            <%}%>
+          
+            <form action="/add" id="form" class="ui form" method="POST">
+                <div class="ui three fields">
+                    <div class="field">
+                        <label for="uName" class="ui label green" autofocus="true"  > Enter name</label>
+                        <input type="text" id="uName" name="userName" required="">
+                    </div>
+                    <div class="field">
+                        <label for="uNumber" class="ui label green" autofocus="true" > Enter phone number</label>
+                        <input type="tel" id="uNumber" name="userNumber" minlength="10" maxlength="10" required="">
+                    </div>
+                    <div class="field">
+                        <label for="uEmail" class="ui label green" autofocus="true"> Enter email id</label>
+                        <input type="email" id="uEmail" name="userEmail" required="">
+                    </div>
+                    
+                    <div class="field">
+                        <label for="uPass" class="ui label green" autofocus="true"  > Enter Password</label>
+                        <input type="password" id="uPass" name="userPass" required="">
+                    </div>
+                </div>
+                <div class="ui fluid field">
+                    <input type="submit" value="Submit" class="ui button inverted green fluid">
+                </div>
+            </form>
+            <br>
+            <br>
+            <table class="ui green table">
+                <thead>
+                    <tr>
+                        <th>User Name</th>
+                        <th>User Phone-Number</th>
+                        <th>User Email-Id</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%allUserdata.forEach((data)=>{%>
+                        <tr>
+                            <td><%=data.userName%></td>
+                            <td><%=data.userNumber%></td>
+                            <td><%=data.userEmail%></td>
+                            <td><a class="ui purple button" href="/edit <%=data._id%>"><i class="edit outline icon"></i></a></td>
+                            <td><a onclick="return confirm('Do you want to delete the data of user <%= data.userName %>')" class="ui red button" href="/dataDelete<%=data._id%>"><i class="minus icon"></i></i></a></td>
+                        </tr>
+                   <%});%>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="../js/semantic.min.js"></script>
+    <script>
+        //jquary validation
+        $(document).ready(function(){
+            $("form").validate({
+                rules:{
+                    userName:"required",
+                    userNumber:{
+                        matches:"[0-9]+",
+                        minlength:10,
+                        maxlength:10,     
+                        required:'true'
+                    },
+                    userEmail:{
+                        required:true,
+                    email:true
+                    },
+                    userPass:"required"
+                },
+                messeage:{
+                    userName:'This field is required',
+                    userNumber:"This field is required",
+                    userEmail:"This field is required",
+                    userPass:"This field is required"
+                }
+            })
+        })
+    </script>
+
+</body>
+</html>

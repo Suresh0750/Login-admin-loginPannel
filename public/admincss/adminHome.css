@@ -1,0 +1,25 @@
+.wrapper{
+    width:100%;
+    height:100vh;
+    background-image: url(../image/wavessBackground.jpeg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#error{
+    color: red;
+    text-align: center;
+}
+#form{
+    width: 74em;
+    margin-top: 1em;
+}
+#search{
+    width: 14em;
+    border-radius: 7px;
+    height: 1.5em;
+}
+#submit{
+    border-color: green;
+    border-radius: 3px;
+}
